@@ -7,7 +7,7 @@ def example_contains():
     # Avoid using contains(.//text(), 'search text') in your XPath conditions.
     # Use contains(., 'search text') instead.
     sel = Selector(text='<a href="#">Click here to go to the <strong>Next Page</strong></a>')
-    xp = lambda x: sel.xpath(x).extract()
+    xp = lambda x: sel.xpath(x).getall()
     # take a peek at the node-set
     text = xp('//a//text()')
     assert text == ['Click here to go to the ', 'Next Page']
@@ -20,11 +20,13 @@ def example_contains():
     # converts it to string
     first_node_string = xp('string(//a[1])')
     assert first_node_string == ['Click here to go to the Next Page']
+
     # GOOD
     assert xp("//a[contains(., 'Next Page')]") == first_node
     # BAD
     assert xp("//a[contains(.//text(), 'Next Page')]") == []
     assert xp("//a[contains(.//text(), 'Next Page')]") != first_node
+
     # GOOD
     assert xp("substring-after(//a, 'Next ')") == ['Page']
     # BAD
