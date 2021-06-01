@@ -1,0 +1,4 @@
+http://www.zvon.org/comp/r/tut-XPath_1.html
+
+https://resbazsql.github.io/lc-webscraping/02-xpath/index.html
+
