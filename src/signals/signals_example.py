@@ -17,10 +17,8 @@ class DmozSpider(Spider):
         crawler.signals.connect(spider.spider_closed, signal=signals.spider_closed)
         return spider
 
-
     def spider_closed(self, spider):
         spider.logger.info('Spider closed: %s', spider.name)
-
 
     def parse(self, response):
         pass
