@@ -1,1 +1,2 @@
 scrapy==2.5.0
+PyDispatcher==2.0.5
