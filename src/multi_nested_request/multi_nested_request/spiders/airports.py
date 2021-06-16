@@ -60,8 +60,8 @@ class AirportsSpider(CrawlSpider):
             json_url = 'https://api.flightradar24.com/common/v1/airport.json?code={code}&plugin[]=&plugin-setting[schedule][mode]=&plugin-setting[schedule][timestamp]={timestamp}&page=1&limit=50&token='.format(
                 code=airport['code_little'], timestamp=int(time()))
             urls.append(json_url)
-            if not urls:
-                return item
+        if not urls:
+            return item
 
         # start with first url
         next_url = urls.pop()
