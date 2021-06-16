@@ -23,7 +23,6 @@ class MySpider(scrapy.Spider):
     </ul>
     """
 
-
     def parse(self, response):
         sel = Selector(text=self.text)
         item = {}
