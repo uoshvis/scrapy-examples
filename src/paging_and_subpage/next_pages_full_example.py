@@ -38,15 +38,15 @@ class MySpider(scrapy.Spider):
             item = AustmpsItem()
 
             item['name'] = resource.xpath("h4/a/text()").get()
-            profilepage = response.urljoin(resource.xpath("h4/a/@href").get())
-            item['link'] = profilepage
+            profile_page = response.urljoin(resource.xpath("h4/a/@href").get())
+            item['link'] = profile_page
             item['district'] = resource.xpath("dl/dd/text()").get()
             item['twitter'] = resource.xpath("dl/dd/a[contains(@class, 'twitter')]/@href").get()
             item['party'] = resource.xpath("dl/dt[text()='Party']/following-sibling::dd/text()").get()
             # We need to make a new variable that the scraper will return that will get passed through another callback.
             # We're calling that variable "request"
 
-            request = scrapy.Request(profilepage, callback=self.get_phonenumber)
+            request = scrapy.Request(profile_page, callback=self.get_phonenumber)
             request.meta['item'] = item
             yield request
 
@@ -56,6 +56,7 @@ class MySpider(scrapy.Spider):
         item['phonenumber'] = response.xpath(
             "//h3[text()='Electorate Office ']/following-sibling::dl/dd[1]/a/text()").extract_first()
         yield item  # Return the new phonenumber'd item back to scrape
+
 
 if __name__ == '__main__':
     # run scraper
