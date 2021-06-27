@@ -65,8 +65,13 @@ scrapy crawl pm_data_spider -o outpout.json
 ###Scrapy vs Selenium
 
 Comparison code in `scrapy_VS_selenium.py` is available.
+# Other integrations
 
-# LOGGING with logzero
+`scrapy-splash` https://github.com/scrapy-plugins/scrapy-splash
+
+`scrapy-selenium` https://github.com/clemfromspace/scrapy-selenium
+
+## LOGGING with logzero
 
 ```
 from logzero import logger, logfile
