@@ -64,7 +64,24 @@ scrapy crawl pm_data_spider -o outpout.json
 
 ###Scrapy vs Selenium
 
-Comparison code in `scrapy_VS_selenium.py` is available.
+Comparison code is available in `scrapy_VS_selenium.py`.
+
+####Parse JS page source with Selenium
+```
+import scrapy
+import selenium
+from scrapy.selector import Selector
+from selenium import webdriver
+
+url = 'https://www.example.com'
+driver = webdriver.Chrome('path/to/the/chromedriver')
+driver.get(url) 
+
+scrapy_selector = Selector(text = driver.page_source)
+scrapy_selector.xpath('//*[@itemtype="http://schema.org/ListItem"]') #returns the list of selectors
+
+```
+
 # Other integrations
 
 `scrapy-splash` https://github.com/scrapy-plugins/scrapy-splash
